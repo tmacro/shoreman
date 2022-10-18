@@ -1,0 +1,2 @@
+class ShoremanError(Exception):
+    pass
