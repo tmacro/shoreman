@@ -55,18 +55,27 @@ def get_changed_images(config):
     tagged_images = get_tagged_images(
         config.repository_path, config.prefix, config.git_reference
     )
-    changeset = []
+    changeset = {}
     for image in changed_images:
         image_dir = config.repository_path.joinpath(config.prefix).joinpath(image)
-        changeset.append(
-            ImageChange(
+        changeset[image] = ImageChange(
                 name=image,
                 path=image_dir,
                 ref=ref_hash,
                 tags=tagged_images.get(image, []),
             )
-        )
-    return changeset
+
+    for image, tags in tagged_images.items():
+        if image not in changeset:
+            image_dir = config.repository_path.joinpath(config.prefix).joinpath(image)
+            changeset[image] = ImageChange(
+                    name=image,
+                    path=image_dir,
+                    ref=ref_hash,
+                    tags=tags,
+                )
+
+    return list(changeset.values())
 
 
 def get_all_images(config):

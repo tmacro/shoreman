@@ -50,7 +50,7 @@ def get_args():
     parser.add_argument(
         "-p",
         "--prefix",
-        default=".",
+        default=None,
         type=path_type_relative,
         help="Relative path to the directory containing images",
     )
