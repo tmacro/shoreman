@@ -12,3 +12,6 @@ shoreman = "shoreman.entry:cli"
 
 [tool.setuptools]
 packages = ['shoreman']
+
+[tool.setuptools.package-data]
+shoreman = ["defaults.conf"]
