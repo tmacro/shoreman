@@ -9,3 +9,6 @@ dependencies = []
 
 [project.scripts]
 shoreman = "shoreman.entry:cli"
+
+[tool.setuptools]
+packages = ['shoreman']

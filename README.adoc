@@ -1,1 +1,44 @@
-= shoreman
+= Shoreman
+
+Shoreman is a CLI tool for detecting changes and building container images for a image repository stored in Git.
+It is intended to be operated either manually or in a automated workflow such as Github Actions.
+
+== Installation
+
+To install for the current user
+
+[source, shell]
+----
+git clone https://github.com/tmacro/shoreman.git
+cd shoreman
+pip install --user .
+----
+
+
+== Usage
+
+----
+usage: shoreman [-h] [-c CONFIG_PATH] [-r REPO_PATH] [-p PREFIX] [--ref GIT_REF] [-v] [-d] {version,changes,build} ...
+
+A tool for managing docker image repos
+
+options:
+  -h, --help            show this help message and exit
+  -c CONFIG_PATH, --config CONFIG_PATH
+                        Specify an alternate config file relative to the repository root
+                        (default: shoreman.conf)
+  -r REPO_PATH, --repo REPO_PATH
+                        Path to the git repository to operate on
+                        (default: .)
+  -p PREFIX, --prefix PREFIX
+                        Relative path to the directory containing images
+  --ref GIT_REF         Git reference to inspect.
+  -v, --verbose         Enable verbose logging
+  -d, --dry-run         Don't execute any commands. Only log actions that would have been taken.
+
+Commands:
+  {version,changes,build}
+    version             Print program version
+    changes             Print detected image changes
+    build               Build changed images
+----
